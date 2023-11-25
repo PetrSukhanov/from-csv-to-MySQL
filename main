@@ -1,0 +1,41 @@
+import mysql.connector
+
+mydb = mysql.connector.connect(
+    host = "localhost",
+    user = "root",
+    password = "root",
+    database = "vay"
+)
+
+cursor = mydb.cursor()
+
+import csv
+filename = "/Users/petr_sukhanov/Downloads/hapines.csv"
+
+with open(filename, 'r') as csvfile:
+    csvreader = csv.reader(csvfile)
+    a = next(csvreader)
+    for row in csvreader:
+
+        id = row[0]
+        УФПС = row[1]
+        ОДЗ = row[2]
+        ПДЗ = row[3]
+        Номер = row[4]
+        Наименование = row[5]
+        Дни = row[6]
+        sql = "INSERT INTO suffer(id, УФПС, ОДЗ, ПДЗ, Номер, Наименование, Дни) VALUES(%s,%s,%s,%s,%s,%s,%s)"
+        val = (id, УФПС, ОДЗ, ПДЗ, Номер, Наименование, Дни)
+        cursor.execute(sql,val)
+mydb.commit()
+
+
+
+
+# sql = "CREATE TABLE suffer(id VARCHAR(50), УФПС VARCHAR(50), ОДЗ VARCHAR(50), ПДЗ VARCHAR(50), Номер VARCHAR(50), Наименование VARCHAR(200), Дни VARCHAR(50))"
+
+
+# (id VARCHAR(50), УФПС VARCHAR(50), ОДЗ VARCHAR(50), ПДЗ VARCHAR(50), Номер VARCHAR(50), Наименование VARCHAR(200), Дни VARCHAR(50))"
+
+
+# cursor.execute(sql)
