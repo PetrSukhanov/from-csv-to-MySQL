@@ -10,7 +10,7 @@ mydb = mysql.connector.connect(
 cursor = mydb.cursor()
 
 import csv
-filename = "/Users/petr_sukhanov/Downloads/hapines.csv"
+filename = " "
 
 with open(filename, 'r') as csvfile:
     csvreader = csv.reader(csvfile)
